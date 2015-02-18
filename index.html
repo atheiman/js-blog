@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>js-blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <!-- Bootstrap theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="config.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>js-blog</h1>
+      <p class="lead">The content below is loaded with JavaScript.</p>
+    </div>
+    <div id="nav">
+      <script>
+        // Write a link for each of the posts. This is temporary.
+        config.publishedPosts.forEach( function (post) {
+          document.write(
+            "<a href='#" + config.postsDir + "/" + post.src +
+            "'>" + post.title + "</a>");
+          if (config.publishedPosts.indexOf(post) !== config.publishedPosts.length -1)
+            document.write(' | ');
+        });
+      </script>
+    </div>
+
+    <div id="content"></div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
