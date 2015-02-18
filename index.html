@@ -22,9 +22,7 @@
       <script>
         // Write a link for each of the posts. This is temporary.
         config.publishedPosts.forEach( function (post) {
-          document.write(
-            "<a href='#" + config.postsDir + "/" + post.src +
-            "'>" + post.title + "</a>");
+          document.write("<a href='#" + post.src + "'>" + post.title + "</a>");
           if (config.publishedPosts.indexOf(post) !== config.publishedPosts.length -1)
             document.write(' | ');
         });
