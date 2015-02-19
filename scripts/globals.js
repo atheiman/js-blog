@@ -20,6 +20,13 @@ function checkArrayForDuplicates(array, arrayNameStr) {
         return errors;
 }
 
+function highlightCode() {
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+        debug('highlighted block: ' + block);
+    });
+}
+
 function App(options) {
     // options object should contain the following properties:
     //
@@ -78,6 +85,7 @@ function App(options) {
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 contentDiv.innerHTML = xmlhttp.responseText;
+                highlightCode();
             }
         };
         xmlhttp.open("GET", app.srcPath + src + "?t=" + Math.random(),true);
