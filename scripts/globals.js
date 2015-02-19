@@ -22,6 +22,7 @@ function checkArrayForDuplicates(array, arrayNameStr) {
 
 function highlightCode() {
     $('pre code').each(function(i, block) {
+        block.innerHTML = block.innerHTML.trim();
         hljs.highlightBlock(block);
         debug('highlighted block: ' + block);
     });
