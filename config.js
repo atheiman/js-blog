@@ -1,21 +1,28 @@
-var config = {
-    "postsDir": "posts",
-    "publishedPosts": [
+var app = new App({
+    'productionHostname': 'github.io',
+    'srcPath': 'src/',
+    'categories': [
+        "Django",
+        "Uncategorized"
+    ],
+    'posts': [
         {
-            "title": "Django Basics",
-            "src": "django-basics.html",
+            category: "Django",
+            src: "django/django-basics.html",
+            title: "Django Basics",
+            slug: "django-basics"
         },
         {
-            "title": "Django ORM",
-            "src": "django-orm.html",
+            category: "Django",
+            src: "django/django-orm.html",
+            title: "Django ORM",
+            slug: "django-orm"
         },
         {
-            "title": "Django Templating",
-            "src": "django-templating.html",
-        },
-        {
-            "title": "Django URL Resolver",
-            "src": "django-url-resolver.html",
+            category: "Uncategorized",
+            src: "uncategorized/js-ternary.html",
+            title: "JavaScript Ternary Operator",
+            slug: "js-ternary-operator"
         }
     ]
-}
+});

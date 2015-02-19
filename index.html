@@ -9,6 +9,7 @@
   <!-- Bootstrap theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="scripts/globals.js"></script>
   <script src="config.js"></script>
 </head>
 
@@ -21,9 +22,9 @@
     <div id="nav">
       <script>
         // Write a link for each of the posts. This is temporary.
-        config.publishedPosts.forEach( function (post) {
-          document.write("<a href='#" + post.src + "'>" + post.title + "</a>");
-          if (config.publishedPosts.indexOf(post) !== config.publishedPosts.length -1)
+        app.posts.forEach(function (post) {
+          document.write("<a href='#" + post.slug + "'>" + post.title + "</a>");
+          if (app.posts.indexOf(post) !== app.posts.length -1)
             document.write(' | ');
         });
       </script>
