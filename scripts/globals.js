@@ -123,6 +123,15 @@ function App(options) {
         });
     };
 
+    this.checkPostsValid = function () {
+        // check each post category is a real category
+        var categories = this.categories;
+        this.posts.forEach(function (post) {
+            if (categories.indexOf(post.category) === -1)
+                debug('unknown category: ' + post.category + ' attached to post: ' + post.title);
+        });
+    };
+
     this.checkCategoriesUnique = function() {
         var errors = checkArrayForDuplicates(this.categories, 'categories');
         if (errors) {
@@ -141,6 +150,7 @@ function App(options) {
 
     this.runChecks = function () {
         this.checkPostsUnique();
+        this.checkPostsValid();
         this.checkCategoriesUnique();
         this.checkCounts();
     };
