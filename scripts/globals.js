@@ -103,6 +103,10 @@ function App(options) {
     };
 
     this.blurContent = function () {
+        //
+        // IT WOULD PROBABLY BE EASIER TO SIMPLE MAKE THE TEXT WITHIN THE CONTENT
+        // DIV BLURRY RATHER THAN DROPPING A DIV ON TOP AND REMOVING IT
+        //
         var overlayDiv = document.createElement("DIV");
         overlayDiv.id = "overlayDiv";
         style = "width:" + contentDiv.offsetWidth + "px;" +
