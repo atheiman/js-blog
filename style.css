@@ -1,0 +1,6 @@
+#overlayDiv {
+    position:absolute;
+    background-color:#333;
+    z-index:10;
+    opacity:.5;
+}

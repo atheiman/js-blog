@@ -94,11 +94,26 @@ function App(options) {
                 }
             }
             highlightCode();
+            app.removeBlur();
         };
-        xmlhttp.open("GET", app.srcPath + src + "?t=" + Math.random(),true);
+        xmlhttp.open("GET", app.srcPath + src + "?t=" + Math.random(), true);
         xmlhttp.send();
+        app.blurContent();
         debug('AJAX request sent to ' + src);
     };
+
+    this.blurContent = function () {
+        var overlayDiv = document.createElement("DIV");
+        overlayDiv.id = "overlayDiv";
+        style = "width:" + contentDiv.offsetWidth + "px;" +
+               "height:" + contentDiv.offsetHeight + "px;";
+        overlayDiv.setAttribute('style', style);
+        contentDiv.insertBefore(overlayDiv, contentDiv.childNodes[0]);
+    };
+
+    this.removeBlur = function () {
+        contentDiv.removeChild(contentDiv.childNodes[0]);
+    }
 
     // Checks to be run on init
     this.checkPostsUnique = function () {
