@@ -22,7 +22,7 @@ function checkArrayForDuplicates(array, arrayNameStr) {
 
 function highlightCode() {
     $('pre code').each(function(i, block) {
-        block.innerHTML = block.innerHTML.trim();
+        block.innerHTML = block.innerHTML
         hljs.highlightBlock(block);
         debug('highlighted block: ' + block);
     });
@@ -85,9 +85,15 @@ function App(options) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                contentDiv.innerHTML = xmlhttp.responseText;
-                highlightCode();
+                if (new RegExp("\.md$").test(src)) {
+                    contentDiv.innerHTML = marked(xmlhttp.responseText);
+                    debug('retrieved src: ' + src + ', parsed as markdown');
+                } else {    // parse src as markdown
+                    contentDiv.innerHTML = xmlhttp.responseText;
+                    debug('retrieved src: ' + src);
+                }
             }
+            highlightCode();
         };
         xmlhttp.open("GET", app.srcPath + src + "?t=" + Math.random(),true);
         xmlhttp.send();
