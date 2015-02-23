@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/zenburn.min.css">
 
   <script src="scripts/globals.js"></script>
+  <script src="scripts/app.js"></script>
   <script src="config.js"></script>
 </head>
 
@@ -56,9 +57,9 @@
     <div id="nav">
       <script>
         // Write a link for each of the posts. This is temporary.
-        app.posts.forEach(function (post) {
+        app.getAllPosts().forEach(function (post) {
           document.write("<a href='#" + post.slug + "'>" + post.title + "</a>");
-          if (app.posts.indexOf(post) !== app.posts.length -1)
+          if (app.getAllPosts().indexOf(post) !== app.getAllPosts().length -1)
             document.write(' | ');
         });
       </script>
@@ -74,6 +75,7 @@
   <!-- Code highlighting using highlightjs.org -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
   <script src="scripts/marked.js"></script>
+  <script src="scripts/spin.min.js"></script>
   <script src="scripts/end.js"></script>
 </body>
 
