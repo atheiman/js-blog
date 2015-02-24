@@ -29,7 +29,7 @@ function App(options) {
             if (post.title.toLowerCase() === titleStr.toLowerCase())
                 returnPost = post;
         });
-        if (returnPost === {}) {
+        if (Object.keys(returnPost).length === 0) {
             debug("getPostFromTitle(" + titleStr + ") returned no post.");
             return null;
         } else {
@@ -43,7 +43,7 @@ function App(options) {
             if (post.slug.toLowerCase() === slugStr.toLowerCase())
                 returnPost = post;
         });
-        if (returnPost === {}) {
+        if (Object.keys(returnPost).length === 0) {
             debug("getPostFromSlug(" + slugStr + ") returned no post.");
             return null;
         } else {
@@ -63,7 +63,12 @@ function App(options) {
     };
 
     this.setContent = function () {
-        var src = app.getPostFromSlug(location.hash.slice(1)).src;
+        post = app.getPostFromSlug(location.hash.slice(1));
+        if (post === null) {    // slug is a category
+            var post = app.getPostsOfCategory(location.hash.slice(1))[0];
+            debug('retrieved most recent post of category ' + location.hash.slice(1));
+        }
+        var src = post.src;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {

@@ -1,7 +1,7 @@
 var app = new App({
     'productionHostname': 'atheiman.github.io',
     'srcPath': 'src/',
-    'recentPostsDisplay': 3,    // set to 0 to hide
+    'recentPostsDisplay': 2,    // set to 0 to hide
     'categories': [
         'Django',
         'JavaScript'
@@ -20,7 +20,7 @@ var app = new App({
             slug: "django-orm"
         },
         {
-            category: "Uncategorized",
+            category: "JavaScript",
             src: "uncategorized/js-ternary.md",
             title: "JavaScript Ternary Operator",
             slug: "js-ternary-operator"

@@ -12,9 +12,10 @@
   <!-- Bootstrap theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-  <link rel="stylesheet" href="style.css">
   <!-- Code highlighting using highlightjs.org -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/zenburn.min.css">
+
+  <link rel="stylesheet" href="style.css">
 
   <script src="scripts/globals.js"></script>
   <script src="scripts/app.js"></script>
@@ -53,21 +54,30 @@
         </div>
       </div>
     </nav> -->
-
-    <div id="nav">
-      Recent posts: <script>
-        // Write a link for each of the posts. This is temporary.
-        if (app.recentPostsDisplay) {
-          for (var i = 0, len = app.posts.length; i < len; i++) {
-            if (i > app.recentPostsDisplay)
-              break;
-            document.write("<a href='#" + app.posts[i].slug + "'>" + app.posts[i].title + "</a>");
-            if (i + 1 !== len)
-              document.write(' | ');
-          }
+    <script>
+      if (app.categories.length > 1) {
+        document.write('<div id="categories">Categories: ');
+        for (var i = 0; i < app.categories.length; i++) {
+          document.write('<a href="#' + app.categories[i] + '">' + app.categories[i] + '</a>');
+          if (i + 1 !== app.categories.length)
+            document.write(' | ');
         }
-      </script>
-    </div>
+        document.write('</div>');
+      }
+    </script>
+
+    <script>
+      // Write a link for each of the posts. This is temporary.
+      if (app.recentPostsDisplay) {
+        document.write('<div id="recentPosts">Recent posts: ');
+        for (var i = 0; i < app.recentPostsDisplay; i++) {
+          if (i !== 0)
+            document.write(' | ');
+          document.write("<a href='#" + app.posts[i].slug + "'>" + app.posts[i].title + "</a> ");
+        }
+        document.write('</div>');
+      }
+    </script>
 
     <div id="content"></div>
   </div>
