@@ -101,7 +101,19 @@ function App(options) {
     };
 
     this.setPagination = function() {
-
+        activeIndex = app.posts.indexOf(app.activePost);
+        if (activeIndex === 0) {
+            newerA.classList.add('invisible');
+        } else {
+            newerA.href = "#" + app.posts[activeIndex - 1].slug;
+            newerA.classList.remove('invisible');
+        }
+        if (activeIndex === app.posts.length - 1) {
+            olderA.classList.add('invisible');
+        } else {
+            olderA.href = "#" + app.posts[activeIndex + 1].slug;
+            olderA.classList.remove('invisible');
+        }
     };
 
     // Checks to be run on init

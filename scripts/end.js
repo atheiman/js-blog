@@ -1,4 +1,6 @@
 var contentDiv = document.getElementById('content');
+var olderA = document.getElementById('older');
+var newerA = document.getElementById('newer');
 
 window.onhashchange = function () {
     debug('hash changed to ' + location.hash);
