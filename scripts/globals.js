@@ -1,23 +1,25 @@
-var DEBUG = true;
-
 function debug(logString) {
-    if (DEBUG)
-        console.log('DEBUG: ' + logString);
+  DEBUG = (typeof DEBUG === "undefined") ? true : DEBUG;
+  if (DEBUG)
+    console.log('DEBUG: ' + logString);
 }
 
 function checkArrayForDuplicates(array, arrayNameStr) {
-    // return false if no dups, return array of errors as strings if dups
-    arrayNameStr = (typeof arrayNameStr === "undefined") ? 'unnamed array' : arrayNameStr;
-    var duplicates = [], errors = [];
-    array.forEach(function (element) {
-        if (duplicates.indexOf(element) !== -1)
-            errors.push(arrayNameStr + ' duplicate found: ' + element);
-        duplicates.push(element);
-    });
-    if (errors.length === 0)
-        return false;
-    else
-        return errors;
+  // return false if no dups, return array of error strings if dups
+  // parameters:
+  //   array        | required | Array with potential duplicates
+  //   arrayNameStr | optional | String describing the array
+  arrayNameStr = (typeof arrayNameStr === "undefined") ? 'unnamed array' : arrayNameStr;
+  var duplicates = [], errors = [];
+  array.forEach(function (element) {
+    if (duplicates.indexOf(element) !== -1)
+      errors.push(arrayNameStr + ' duplicate found: ' + element);
+    duplicates.push(element);
+  });
+  if (errors.length === 0)
+    return false;
+  else
+    return errors;
 }
 
 function highlightCode() {
@@ -26,6 +28,20 @@ function highlightCode() {
         hljs.highlightBlock(block);
         debug('highlighted block: ' + block);
     });
+}
+
+function getProp(object, prop, norm) {
+  // return the value of object.prop, or the value of norm if undefined.
+  // norm is optional, and defaults to null
+  // parameters:
+  //   object | required | Object
+  //   prop   | required | String
+  //   norm   | optional | any type, defaults to null
+  norm = (typeof norm === "undefined") ? null : norm;
+  if (object.hasOwnProperty(prop))
+    return object[prop];
+  else
+    return norm;
 }
 
 var spinnerOpts = {

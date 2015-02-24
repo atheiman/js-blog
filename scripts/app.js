@@ -7,23 +7,25 @@ function App(options) {
     //     - name               capitalized string
     //     - posts              array of post objects (category, src, title, slug)
 
-    this.categories = options.categories;
-    this.srcPath = (typeof options.srcPath === "undefined") ? "src/" : options.srcPath;
-    this.productionHostname = (typeof options.productionHostname === "undefined") ? "" : options.productionHostname;
+    var requiredProps = ['categories', 'posts'];
+    for (prop in requiredProps) {
+        if (!options.hasOwnProperty(requiredProps[prop]))
+            debug('options missing required property ' + prop);
+    };
 
-    this.getAllPosts = function () {
-        var posts = [];
-        for (var c = 0; c < this.categories.length; c ++) {
-            for (var p = 0; p < this.categories[c].posts.length; p ++) {
-                posts.push(this.categories[c].posts[p]);
-            }
-        }
-        return posts;
+    this.categories = options.categories;
+    this.posts = options.posts;
+    this.recentPostsDisplay = getProp(options, 'recentPostsDisplay', 3);
+    this.srcPath = getProp(options, 'srcPath', "src/");
+    this.productionHostname = getProp(options, 'productionHostname', '');
+
+    this.getPostIndex = function (post) {
+
     };
 
     this.getPostFromTitle = function (titleStr) {
         var returnPost = {};
-        this.getAllPosts().forEach(function (post) {
+        this.posts.forEach(function (post) {
             if (post.title.toLowerCase() === titleStr.toLowerCase())
                 returnPost = post;
         });
@@ -37,7 +39,7 @@ function App(options) {
 
     this.getPostFromSlug = function (slugStr) {
         var returnPost = {};
-        this.getAllPosts().forEach(function (post) {
+        this.posts.forEach(function (post) {
             if (post.slug.toLowerCase() === slugStr.toLowerCase())
                 returnPost = post;
         });
@@ -51,7 +53,7 @@ function App(options) {
 
     this.getPostsOfCategory = function (categoryStr) {
         var posts = [];
-        this.getAllPosts().forEach(function (post) {
+        this.posts.forEach(function (post) {
             if (post.category.toLowerCase() === categoryStr.toLowerCase())
                 posts.push(post);
         });
@@ -85,7 +87,7 @@ function App(options) {
     // Checks to be run on init
     this.checkPostsUnique = function () {
         var srcs = [], titles = [], slugs = [];
-        this.getAllPosts().forEach(function (post) {
+        this.posts.forEach(function (post) {
             srcs.push(post.src);
             titles.push(post.title);
             slugs.push(post.slug);
@@ -108,7 +110,7 @@ function App(options) {
     this.checkPostsValid = function () {
         // check each post category is a real category
         var categories = this.categories;
-        this.getAllPosts().forEach(function (post) {
+        this.posts.forEach(function (post) {
             if (categories.indexOf(post.category) === -1)
                 debug('unknown category: ' + post.category + ' attached to post: ' + post.title);
         });
@@ -124,7 +126,7 @@ function App(options) {
     };
 
     this.checkCounts = function () {
-        if (this.getAllPosts().length < 1)
+        if (this.posts.length < 1)
             debug('no posts loaded');
         if (this.categories.length < 1)
             debug('no categories loaded');

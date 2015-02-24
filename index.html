@@ -57,11 +57,15 @@
     <div id="nav">
       Recent posts: <script>
         // Write a link for each of the posts. This is temporary.
-        app.getAllPosts().forEach(function (post) {
-          document.write("<a href='#" + post.slug + "'>" + post.title + "</a>");
-          if (app.getAllPosts().indexOf(post) !== app.getAllPosts().length -1)
-            document.write(' | ');
-        });
+        if (app.recentPostsDisplay) {
+          for (var i = 0, len = app.posts.length; i < len; i++) {
+            if (i > app.recentPostsDisplay)
+              break;
+            document.write("<a href='#" + app.posts[i].slug + "'>" + app.posts[i].title + "</a>");
+            if (i + 1 !== len)
+              document.write(' | ');
+          }
+        }
       </script>
     </div>
 

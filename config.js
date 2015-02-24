@@ -1,34 +1,29 @@
 var app = new App({
-    'productionHostname': 'github.io',
+    'productionHostname': 'atheiman.github.io',
     'srcPath': 'src/',
+    'recentPostsDisplay': 3,    // set to 0 to hide
     'categories': [
+        'Django',
+        'JavaScript'
+    ],
+    'posts': [    // posts at the top of the list should be the most recent
         {
-            'name': 'Django',
-            'posts': [
-                {
-                    category: "Django",
-                    src: "django/django-basics.md",
-                    title: "Django Basics",
-                    slug: "django-basics"
-                },
-                {
-                    category: "Django",
-                    src: "django/django-orm.md",
-                    title: "Django ORM",
-                    slug: "django-orm"
-                }
-            ]
+            category: "Django",
+            src: "django/django-basics.md",
+            title: "Django Basics",
+            slug: "django-basics"
         },
         {
-            'name': 'JavaScript',
-            'posts': [
-                {
-                    category: "Uncategorized",
-                    src: "uncategorized/js-ternary.md",
-                    title: "JavaScript Ternary Operator",
-                    slug: "js-ternary-operator"
-                }
-            ]
+            category: "Django",
+            src: "django/django-orm.md",
+            title: "Django ORM",
+            slug: "django-orm"
+        },
+        {
+            category: "Uncategorized",
+            src: "uncategorized/js-ternary.md",
+            title: "JavaScript Ternary Operator",
+            slug: "js-ternary-operator"
         }
     ]
 });
