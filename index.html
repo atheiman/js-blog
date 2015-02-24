@@ -24,36 +24,42 @@
 
 <body>
   <div class="container">
-    <div class="page-header">
-      <h1>Django and JavaScript Tricks</h1>
+    <div class="page-header" style="">
+      <h1><span class="pointer">Django and JavaScript Tricks</span></h1>
       <p class="lead">Short and sweet web dev snippets and tips</p>
-    </div>
-
-    <script>    // Write a link for each of the categories
+      <script>    // Write a link for each of the categories
       if (app.categories.length > 1) {
-        document.write('<div id="categories">Categories: ');
+        document.write('<h4 id="categories">Categories: ');
         for (var i = 0; i < app.categories.length; i++) {
           document.write('<a href="#' + app.categories[i] + '">' + app.categories[i] + '</a>');
           if (i + 1 !== app.categories.length)
             document.write(' | ');
         }
-        document.write('</div>');
+        document.write('</h4>');
       }
-    </script>
+      </script>
 
-    <script>    // Write a link for each of the posts
+      <script>    // Write a link for each of the posts
       if (app.recentPostsDisplay) {
-        document.write('<div id="recentPosts">Recent posts: ');
+        document.write('<h5 id="recentPosts">Recent posts: ');
         for (var i = 0; i < app.recentPostsDisplay; i++) {
           if (i !== 0)
             document.write(' | ');
           document.write("<a href='#" + app.posts[i].slug + "'>" + app.posts[i].title + "</a> ");
         }
-        document.write('</div>');
+        document.write('</h5>');
       }
-    </script>
+      </script>
+    </div>
 
-    <div id="content"></div>
+    <div id="content">
+      <p>Welcome to Austin Heiman's example blog. Getting posts onto the blog is as simple as:</p>
+      <ol>
+        <li>writing the post in the source directory as either markdown or html</li>
+        <li>registering the post in <code>config.js</code></li>
+      </ol>
+      <p>More information at <a href="https://github.com/atheiman/js-blog">github.com/atheiman/js-blog</a>.</p>
+    </div>
 
     <div id="pagination" class="text-center">
       <a class="btn btn-default invisible" id="newer">

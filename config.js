@@ -9,7 +9,7 @@ var app = new App({
     'posts': [    // posts at the top of the list should be the most recent
         {
             category: "Django",
-            src: "django/django-basics.md",
+            src: "django/django-basics.html",
             title: "Django Basics",
             slug: "django-basics"
         },

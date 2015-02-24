@@ -5,3 +5,7 @@
 #pagination a {
     margin: 25px;
 }
+
+.pointer {
+    cursor: pointer;
+}

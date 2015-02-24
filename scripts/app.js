@@ -3,9 +3,8 @@ function App(options) {
     //
     // - productionHostname     string (no trailing slash, thanks tho)
     // - srcPath                string (gimme the trailing slash, please)
-    // - categories             array of category objects:
-    //     - name               capitalized string
-    //     - posts              array of post objects (category, src, title, slug)
+    // - categories             array of category titles (capitalized strings):
+    // - posts                  array of post objects (category, src, title, slug)
 
     var requiredProps = ['categories', 'posts'];
     for (prop in requiredProps) {
@@ -62,6 +61,8 @@ function App(options) {
     }
 
     this.getPostsOfCategory = function (categoryStr) {
+        // returns an Array of post objects with category case-insensitively
+        // matching categoryStr
         var posts = [];
         this.posts.forEach(function (post) {
             if (post.category.toLowerCase() === categoryStr.toLowerCase())
