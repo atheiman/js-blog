@@ -18,6 +18,7 @@ function App(options) {
     this.recentPostsDisplay = getProp(options, 'recentPostsDisplay', 3);
     this.srcPath = getProp(options, 'srcPath', "src/");
     this.productionHostname = getProp(options, 'productionHostname', '');
+    this.activePost = {};
 
     this.getPostIndex = function (post) {
 
@@ -51,6 +52,15 @@ function App(options) {
         }
     };
 
+    this.getPostFromHash = function () {
+        post = app.getPostFromSlug(location.hash.slice(1));
+        if (post === null) {    // hash is a category, get first post of category
+            var post = app.getPostsOfCategory(location.hash.slice(1))[0];
+            debug('retrieved most recent post of category ' + location.hash.slice(1));
+        }
+        return post;
+    }
+
     this.getPostsOfCategory = function (categoryStr) {
         var posts = [];
         this.posts.forEach(function (post) {
@@ -62,13 +72,15 @@ function App(options) {
         return posts;
     };
 
+    this.setActivePost = function () {
+        this.activePost = app.getPostFromHash();
+        this.setContent();
+        highlightCode();
+        this.setPagination();
+    };
+
     this.setContent = function () {
-        post = app.getPostFromSlug(location.hash.slice(1));
-        if (post === null) {    // slug is a category
-            var post = app.getPostsOfCategory(location.hash.slice(1))[0];
-            debug('retrieved most recent post of category ' + location.hash.slice(1));
-        }
-        var src = post.src;
+        var src = app.activePost.src;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -80,13 +92,16 @@ function App(options) {
                     debug('retrieved src: ' + src);
                 }
                 spinner.stop();
-                highlightCode();
             }
         };
         xmlhttp.open("GET", app.srcPath + src + "?t=" + Math.random(), true);
         xmlhttp.send();
         var spinner = new Spinner(spinnerOpts).spin(contentDiv);
         debug('AJAX request sent to ' + src);
+    };
+
+    this.setPagination = function() {
+
     };
 
     // Checks to be run on init
