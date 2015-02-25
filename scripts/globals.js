@@ -1,5 +1,5 @@
 function debug(logString) {
-  DEBUG = (typeof DEBUG === "undefined") ? true : DEBUG;
+  DEBUG = (typeof DEBUG === "undefined") ? (app.productionHostname !== location.hostname) : DEBUG;
   if (DEBUG)
     console.log('DEBUG: ' + logString);
 }
@@ -23,11 +23,11 @@ function checkArrayForDuplicates(array, arrayNameStr) {
 }
 
 function highlightCode() {
-    $('pre code').each(function(i, block) {
-        block.innerHTML = block.innerHTML
-        hljs.highlightBlock(block);
-        debug('highlighted block: ' + block);
-    });
+  $('pre code').each(function(i, block) {
+    block.innerHTML = block.innerHTML
+    hljs.highlightBlock(block);
+    debug('highlighted block: ' + block);
+  });
 }
 
 function getProp(object, prop, norm) {
