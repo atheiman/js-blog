@@ -21,7 +21,7 @@ var app = new App({
         },
         {
             category: "JavaScript",
-            src: "uncategorized/js-ternary.md",
+            src: "javascript/js-ternary.md",
             title: "JavaScript Ternary Operator",
             slug: "js-ternary-operator"
         }
